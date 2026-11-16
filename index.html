@@ -118,7 +118,7 @@ h3 { margin: 0 0 6px; font-size: 19px; }
 .systems { margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent-2); border-radius: 14px; padding: 20px; }
 .systems h3 { font-size: 17px; margin: 0 0 4px; }
 .systems p { margin: 0 0 14px; color: var(--muted); font-size: 14.5px; }
-.sys-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.sys-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 620px) { .sys-grid { grid-template-columns: 1fr; } }
 .sys { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: var(--bg); color: var(--muted); font-size: 13.5px; }
 .sys b { display: block; color: var(--text); font-size: 15px; margin-bottom: 3px; }
@@ -288,9 +288,10 @@ footer { padding: 26px 0; color: var(--muted); font-size: 13px; text-align: cent
           <div class="duty"><div class="n mono">06</div><div><h3>Team support and meetings</h3><p>Technical BIM support for design teams, site engineers and project managers, and presenting issues, workflow updates and clash resolutions in coordination meetings.</p></div></div>
         </div>
         <div class="systems">
-          <h3>Structural systems coordinated on my projects</h3>
-          <p>Beyond cast-in-place concrete, the projects I worked on needed coordination between the main model and specialist packages, each with its own subcontractor, drawings and tolerances.</p>
+          <h3>Packages coordinated on my projects</h3>
+          <p>Beyond cast-in-place concrete, the projects I worked on needed coordination between the main model, MEP services and specialist structural packages, each with its own team, drawings and tolerances.</p>
           <div class="sys-grid">
+            <div class="sys"><b>MEP services</b>Ducts, pipes, cable trays and equipment coordinated with structure: slab and wall openings, sleeves, beam penetrations and clearances.</div>
             <div class="sys"><b>Steel structures</b>Linked steel models coordinated with concrete: anchor bolts, embedded plates and connection interfaces.</div>
             <div class="sys"><b>Post-tensioned slabs</b>Tendon layouts coordinated against openings, sleeves, MEP penetrations and reinforcement.</div>
             <div class="sys"><b>Hollow-core slabs</b>Precast panel layouts coordinated with supporting beams and walls, openings and topping.</div>
@@ -333,7 +334,7 @@ footer { padding: 26px 0; color: var(--muted); font-size: 13px; text-align: cent
         <div class="chips">
           <span class="chip hot">Model coordination</span><span class="chip hot">Clash detection</span><span class="chip hot">BIM Execution Plan</span>
           <span class="chip">RASCI</span><span class="chip">Naming conventions</span><span class="chip">Version control</span>
-          <span class="chip">Steel coordination</span><span class="chip">Post-tension coordination</span><span class="chip">Hollow-core slabs</span>
+          <span class="chip">MEP coordination</span><span class="chip">Steel coordination</span><span class="chip">Post-tension coordination</span><span class="chip">Hollow-core slabs</span>
         </div>
       </div>
       <div class="panel">
