@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohamed Nasr | BIM Coordinator & Revit API Developer</title>
+<meta name="description" content="Portfolio of Mohamed Nasr: BIM coordination, LOD 400 structural modeling, shop drawings, and 20+ custom Revit add-ins built with C# and WPF.">
+<style>
+:root {
+  --bg: #0b1017;
+  --bg-2: #101823;
+  --card: #141d2a;
+  --line: #233044;
+  --text: #e6edf5;
+  --muted: #93a3b8;
+  --accent: #4c9dff;
+  --accent-2: #19c3a6;
+  --accent-ink: #06121f;
+  --grid: rgba(76, 157, 255, .07);
+  --shadow: 0 18px 50px rgba(0, 0, 0, .45);
+}
+:root[data-theme="light"] {
+  --bg: #f5f7fa;
+  --bg-2: #ffffff;
+  --card: #ffffff;
+  --line: #d9e0ea;
+  --text: #121a26;
+  --muted: #566579;
+  --accent: #1560d4;
+  --accent-2: #0b8f79;
+  --accent-ink: #ffffff;
+  --grid: rgba(21, 96, 212, .07);
+  --shadow: 0 14px 40px rgba(20, 40, 80, .14);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.65 "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { width: min(1160px, 100% - 32px); margin-inline: auto; }
+.mono { font-family: "Cascadia Code", Consolas, "SF Mono", Menlo, monospace; }
+
+/* nav */
+nav {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+}
+nav .wrap { display: flex; align-items: center; gap: 20px; height: 60px; }
+.brand { font-weight: 700; letter-spacing: .02em; color: var(--text); display: flex; align-items: center; gap: 10px; }
+.brand span {
+  width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: var(--accent-ink);
+  display: grid; place-items: center; font-size: 13px; font-weight: 800;
+}
+.links { margin-left: auto; display: flex; gap: 22px; font-size: 14px; }
+.links a { color: var(--muted); }
+.links a:hover { color: var(--text); text-decoration: none; }
+#theme {
+  border: 1px solid var(--line); background: var(--card); color: var(--text);
+  width: 36px; height: 36px; border-radius: 9px; cursor: pointer; font-size: 16px;
+}
+@media (max-width: 760px) { .links { display: none; } #theme { margin-left: auto; } }
+
+/* hero */
+header.hero {
+  position: relative; padding: 88px 0 72px; overflow: hidden; border-bottom: 1px solid var(--line);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.hero .wrap { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+.eyebrow { color: var(--accent-2); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+h1 { font-size: clamp(38px, 6.4vw, 68px); line-height: 1.05; margin: 14px 0 12px; letter-spacing: -.02em; }
+.role { font-size: clamp(18px, 2.4vw, 24px); color: var(--muted); margin: 0 0 22px; }
+.role b { color: var(--text); font-weight: 600; }
+.lede { max-width: 62ch; color: var(--muted); margin: 0 0 30px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--card); color: var(--text); font-weight: 600; font-size: 15px;
+}
+.btn:hover { text-decoration: none; border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.photo {
+  width: 230px; height: 230px; border-radius: 24px; object-fit: cover; object-position: top;
+  border: 1px solid var(--line); box-shadow: var(--shadow);
+}
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .photo { width: 150px; height: 150px; order: -1; } }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 52px; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+.stat b { display: block; font-size: 30px; line-height: 1.1; color: var(--accent); }
+.stat span { color: var(--muted); font-size: 13.5px; }
+@media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+/* sections */
+section { padding: 76px 0; border-bottom: 1px solid var(--line); }
+section.alt { background: var(--bg-2); }
+.kicker { color: var(--accent-2); font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; }
+h2 { font-size: clamp(27px, 3.6vw, 38px); margin: 8px 0 10px; letter-spacing: -.01em; line-height: 1.15; }
+.sub { color: var(--muted); max-width: 70ch; margin: 0 0 36px; }
+h3 { margin: 0 0 6px; font-size: 19px; }
+
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+.panel h3 { font-size: 15px; color: var(--muted); font-weight: 600; margin-bottom: 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13.5px; background: var(--bg); }
+.chip.hot { border-color: var(--accent); color: var(--accent); }
+
+/* datahub */
+.dh-head { display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: center; margin-bottom: 30px; }
+.dh-head img { width: 104px; height: 104px; border-radius: 24px; box-shadow: var(--shadow); }
+.dh-head p { color: var(--muted); margin: 6px 0 0; max-width: 72ch; }
+@media (max-width: 640px) { .dh-head { grid-template-columns: 1fr; } .dh-head img { width: 76px; height: 76px; } }
+.feats { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-bottom: 44px; }
+.feat { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--card); font-size: 14.5px; color: var(--muted); }
+.feat b { display: block; color: var(--text); font-size: 15px; margin-bottom: 2px; }
+.tool { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); gap: 34px; align-items: start; padding: 34px 0; border-top: 1px solid var(--line); }
+.tool:nth-of-type(even) .tool-text { order: 2; }
+@media (max-width: 900px) { .tool { grid-template-columns: 1fr; } .tool:nth-of-type(even) .tool-text { order: 0; } }
+.tool-text .tag { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.tool-text h3 { font-size: 26px; margin: 4px 0 8px; }
+.tool-text p { color: var(--muted); margin: 0 0 14px; }
+.tool-text ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+.tool-text li { margin-bottom: 5px; }
+.tool-text li::marker { color: var(--accent); }
+.shot { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--card); cursor: zoom-in; box-shadow: var(--shadow); padding: 0; width: 100%; display: block; }
+.shot img { width: 100%; }
+.thumbs { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.thumbs button { width: 92px; aspect-ratio: 16 / 10; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; padding: 0; background: var(--card); cursor: pointer; opacity: .65; }
+.thumbs button img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.thumbs button.on, .thumbs button:hover { opacity: 1; border-color: var(--accent); }
+
+/* add-in cards */
+.group-title { display: flex; align-items: baseline; gap: 12px; margin: 38px 0 16px; }
+.group-title:first-of-type { margin-top: 0; }
+.group-title h3 { font-size: 20px; margin: 0; }
+.group-title span { color: var(--muted); font-size: 13px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+.card .media { aspect-ratio: 16 / 9; background: var(--bg); border-bottom: 1px solid var(--line); cursor: zoom-in; padding: 0; border-width: 0 0 1px; width: 100%; position: relative; }
+.card .media { display: block; flex: none; overflow: hidden; }
+.card .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.card .media .count { position: absolute; right: 8px; bottom: 8px; background: rgba(0, 0, 0, .65); color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 999px; }
+.card .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card .top { display: flex; align-items: center; gap: 12px; }
+.glyph { width: 38px; height: 38px; border-radius: 10px; flex: none; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); font-weight: 700; font-size: 13px; }
+.card h4 { margin: 0; font-size: 17px; }
+.card p { margin: 0; color: var(--muted); font-size: 14.5px; }
+.card .chips { margin-top: auto; padding-top: 8px; }
+.card .chip { font-size: 12px; padding: 2px 9px; }
+
+/* projects */
+.proj-block { margin-bottom: 34px; }
+.proj-block > header { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; margin-bottom: 14px; }
+.proj-block > header h3 { margin: 0; }
+.proj-block > header span { color: var(--muted); font-size: 14px; }
+.proj .media img { object-position: center; }
+.proj .loc { font-size: 12px; color: var(--accent-2); letter-spacing: .08em; text-transform: uppercase; }
+
+/* timeline */
+.timeline { border-left: 2px solid var(--line); margin-left: 6px; padding-left: 28px; display: grid; gap: 30px; }
+.job { position: relative; }
+.job::before { content: ""; position: absolute; left: -35px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--bg-2); }
+.job .when { color: var(--accent-2); font-size: 13px; }
+.job h3 { margin: 2px 0 0; }
+.job .co { color: var(--muted); margin: 0 0 8px; }
+.job ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+.job li { margin-bottom: 4px; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.panel ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+.panel li { margin-bottom: 6px; }
+.panel li b { color: var(--text); font-weight: 600; }
+
+/* contact */
+.contact { text-align: center; }
+.contact .sub { margin-inline: auto; }
+.contact .cta { justify-content: center; }
+footer { padding: 26px 0; color: var(--muted); font-size: 13px; text-align: center; }
+
+/* lightbox */
+#lb { position: fixed; inset: 0; z-index: 50; background: rgba(4, 8, 14, .93); display: none; align-items: center; justify-content: center; padding: 56px 16px 64px; }
+#lb.open { display: flex; }
+#lb img { max-width: 100%; max-height: 100%; border-radius: 10px; box-shadow: 0 20px 80px rgba(0, 0, 0, .7); }
+#lb button { position: absolute; background: rgba(255, 255, 255, .1); border: 0; color: #fff; width: 44px; height: 44px; border-radius: 50%; font-size: 22px; cursor: pointer; }
+#lb button:hover { background: rgba(255, 255, 255, .22); }
+#lb .x { top: 12px; right: 14px; }
+#lb .prev { left: 12px; top: 50%; transform: translateY(-50%); }
+#lb .next { right: 12px; top: 50%; transform: translateY(-50%); }
+#lb .cap { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; color: #c9d4e2; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><span>MN</span>Mohamed Nasr</a>
+    <div class="links">
+      <a href="#skills">Skills</a>
+      <a href="#datahub">DataHub</a>
+      <a href="#addins">Add-ins</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button id="theme" aria-label="Switch between dark and light theme" title="Switch theme">◐</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow mono">Cairo, Egypt</div>
+      <h1>Mohamed Nasr</h1>
+      <p class="role"><b>BIM Coordinator</b> · <b>Revit API Developer</b></p>
+      <p class="lede">
+        Structural engineer with 4+ years in BIM: multidisciplinary coordination, clash detection,
+        CDE administration and LOD 400 / LOD 500 delivery on projects across Egypt and Saudi Arabia.
+        I also build the tools my teams use: 20+ Revit add-ins in C# and WPF that remove repetitive
+        modeling, documentation and QA work.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#datahub">See the add-ins</a>
+        <a class="btn" href="Mohamed-Nasr-CV.pdf" download>Download CV</a>
+        <a class="btn" href="https://www.linkedin.com/in/mohamednasr14/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:Mohmednasr142@gmail.com">Email me</a>
+      </div>
+    </div>
+    <img class="photo" id="photo" alt="Mohamed Nasr" hidden>
+  </div>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><b>4+</b><span>years in BIM and structural detailing</span></div>
+      <div class="stat"><b>20+</b><span>Revit add-ins built in C# / WPF</span></div>
+      <div class="stat"><b>11</b><span>major projects in Egypt and KSA</span></div>
+      <div class="stat"><b>LOD 500</b><span>as-built model handover</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="kicker mono">01 · Skills</div>
+    <h2>Engineering and code, on the same desk</h2>
+    <p class="sub">I work on live projects every day, so the tools I write come from real problems in coordination, shop drawings and model quality.</p>
+    <div class="skills">
+      <div class="panel">
+        <h3>Development</h3>
+        <div class="chips">
+          <span class="chip hot">Revit API</span><span class="chip hot">C#</span><span class="chip hot">WPF / XAML</span>
+          <span class="chip">.NET</span><span class="chip">MVVM</span><span class="chip">Excel import / export</span>
+          <span class="chip">Extensible Storage</span><span class="chip">Licensing and installers</span><span class="chip">Dynamo</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>BIM software</h3>
+        <div class="chips">
+          <span class="chip hot">Revit</span><span class="chip hot">Navisworks Manage</span><span class="chip">AutoCAD</span>
+          <span class="chip">AutoCAD Structural Detailing</span><span class="chip">Dynamo</span><span class="chip">SketchUp</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Collaboration / CDE</h3>
+        <div class="chips">
+          <span class="chip hot">Autodesk Construction Cloud</span><span class="chip">ACC Docs</span><span class="chip">Design Collaboration</span>
+          <span class="chip">Model Coordination</span><span class="chip">Aconex</span><span class="chip">Autodesk Forma hub admin</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>BIM management</h3>
+        <div class="chips">
+          <span class="chip">BIM Execution Plan</span><span class="chip">RASCI</span><span class="chip">Naming conventions</span>
+          <span class="chip hot">Clash detection</span><span class="chip">Model coordination</span><span class="chip">Version control</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Technical delivery</h3>
+        <div class="chips">
+          <span class="chip hot">LOD 400 modeling</span><span class="chip">LOD 500 as-built</span><span class="chip hot">Shop drawings</span>
+          <span class="chip">Bar bending schedules</span><span class="chip">Quantity take-offs</span><span class="chip">Parametric families</span>
+          <span class="chip">Project templates</span><span class="chip">RFIs</span><span class="chip">IFC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="datahub" class="alt">
+  <div class="wrap">
+    <div class="kicker mono">02 · Featured product</div>
+    <div class="dh-head">
+      <img src="images/addins/datahub-logo.png" alt="DataHub logo">
+      <div>
+        <h2>DataHub for Autodesk Revit</h2>
+        <p>A suite of data-management tools for Revit 2025 that share one interface, one theme and one licensing system. Designed, written and packaged by me, from the WPF control library to the installer.</p>
+      </div>
+    </div>
+    <div class="feats">
+      <div class="feat"><b>One UI shell</b>Custom WPF window, controls and icons shared by every tool.</div>
+      <div class="feat"><b>Dark and light themes</b>Switchable at runtime, remembered per user.</div>
+      <div class="feat"><b>Per-machine licensing</b>Machine ID, RSA-signed license keys and an activation window.</div>
+      <div class="feat"><b>Installer</b>WiX setup package that deploys the add-in to Revit.</div>
+    </div>
+    <div id="dh-tools"></div>
+  </div>
+</section>
+
+<section id="addins">
+  <div class="wrap">
+    <div class="kicker mono">03 · Revit add-ins</div>
+    <h2>Tools built for the project floor</h2>
+    <p class="sub">A selection of the add-ins I wrote for structural detailing, steel coordination and model management. All of them are C# on the Revit 2025 API.</p>
+    <div id="addin-groups"></div>
+  </div>
+</section>
+
+<section id="projects" class="alt">
+  <div class="wrap">
+    <div class="kicker mono">04 · Projects</div>
+    <h2>Project experience</h2>
+    <p class="sub">Structural BIM modeling, shop drawings and coordination on residential, commercial, entertainment and bridge projects.</p>
+    <div id="project-blocks"></div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="kicker mono">05 · Experience</div>
+    <h2 style="margin-bottom:32px">Where I have worked</h2>
+    <div class="timeline">
+      <div class="job">
+        <div class="when mono">Sep 2025 – Present</div>
+        <h3>BIM Specialist</h3>
+        <p class="co">SIAC Construction · Cairo, Egypt</p>
+        <ul>
+          <li>Coordinate architecture, structure and MEP models and lead clash detection in Navisworks and Revit.</li>
+          <li>Administer the common data environments: Aconex and all ACC modules (Docs, Design Collaboration, Model Coordination).</li>
+          <li>Autodesk Forma hub admin: project templates, members, licenses and roles.</li>
+          <li>Check models and shop drawings against the BEP, RASCI matrices and naming conventions.</li>
+          <li>Developed 20+ custom Revit add-ins in C#, WPF and the Revit API to automate repetitive work.</li>
+          <li>Set up BIM workflows, project templates, parametric families and component libraries.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="when mono">Feb 2025 – Aug 2025</div>
+        <h3>Structural BIM Engineer</h3>
+        <p class="co">SIAC Construction · Egypt</p>
+        <ul>
+          <li>Modeled structural elements to LOD 400 and produced shop drawings, bar bending schedules and quantity take-offs from the model.</li>
+          <li>AMAALA: reviewed and coordinated the as-built and LOD 500 model handover, found model issues and corrected families.</li>
+          <li>Updated models from IFC drawings and RFIs and coordinated with other disciplines.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="when mono">Jun 2023 – Feb 2025</div>
+        <h3>Structural BIM Engineer</h3>
+        <p class="co">Consolidated Contractors Company (CCC) · Egypt</p>
+        <ul>
+          <li>Integrated architectural, structural and MEP design inputs into the BIM model.</li>
+          <li>Prepared Revit shop drawings for all structural elements and for landscape packages (Park Bridge and Ramp Bridge).</li>
+          <li>Produced 2D and 3D construction documentation and developed parametric families.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="when mono">Oct 2022 – May 2023</div>
+        <h3>Shop Drawing and Structural Design Engineer</h3>
+        <p class="co">Standards, Builders' Solutions · Egypt</p>
+        <ul>
+          <li>Prepared shop drawings for all structural elements in AutoCAD Structural Detailing.</li>
+          <li>Reviewed architectural and structural drawings and issued RFIs to resolve conflicts.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:48px">
+      <div class="panel">
+        <h3>Education</h3>
+        <ul>
+          <li><b>B.S. Civil Engineering, Structural Division</b><br>Faculty of Engineering, Ain Shams University · 2017 – 2022<br>Graduation project (Structure): Excellent</li>
+          <li><b>Students Union, Vice President</b> · Nov 2021 – Oct 2022</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Training and courses</h3>
+        <ul>
+          <li><b>Revit API with C#</b> · 2024</li>
+          <li><b>Revit Families Creation</b> · 2023</li>
+          <li><b>Autodesk Navisworks Manage</b> · 2023</li>
+          <li><b>CSI Diploma</b>, Benchmark Training Center · 2021</li>
+          <li><b>Summer training</b>, The Arab Contractors · 2019</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt contact">
+  <div class="wrap">
+    <div class="kicker mono">06 · Contact</div>
+    <h2>Let's talk</h2>
+    <p class="sub">Open to BIM coordination roles and Revit automation work. Arabic (native) and English (very good).</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:Mohmednasr142@gmail.com">Mohmednasr142@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/mohamednasr14/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="tel:+201552909991">+20 155 290 9991</a>
+      <a class="btn" href="Mohamed-Nasr-CV.pdf" download>Download CV</a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">© <span id="yr"></span> Mohamed Nasr · Cairo, Egypt</div></footer>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="x" aria-label="Close">×</button>
+  <button class="prev" aria-label="Previous image">‹</button>
+  <img alt="">
+  <button class="next" aria-label="Next image">›</button>
+  <div class="cap"></div>
+</div>
+
+<script>
+/* ------------------------------------------------------------------
+   CONTENT. To add screenshots, drop files into the images folders:
+     images/addins/<slug>-1.png, <slug>-2.png ...   (png or jpg)
+     images/projects/<slug>-1.jpg ...
+     images/profile/photo.jpg
+   They are picked up automatically; no code changes needed.
+------------------------------------------------------------------- */
+const DATAHUB = [
+  { slug: 'sheetlink', name: 'SheetLink', color: '#16a34a', tag: 'Excel round trip',
+    text: 'Export model data to Excel, edit it there, and import the changes back into Revit.',
+    points: [
+      'Works on model categories, annotation categories, chosen element types and schedules',
+      'Scope: whole model, active view or current selection',
+      'Import preview lists every change so the user ticks what to apply',
+      'Read-only columns (counts, formulas, room values) are protected from import'
+    ] },
+  { slug: 'familyreviser', name: 'FamilyReviser', color: '#7c3aed', tag: 'Family management',
+    text: 'Rename families and types, keep a family library, check family health and assign worksets.',
+    points: [
+      'Batch rename with find / replace, prefix, suffix and case rules, with a live preview',
+      'Export families to a library folder and load them back with overwrite options',
+      'Health check reports file size, warnings and invalid families',
+      'Workset assignment by family / type or by saved rules'
+    ] },
+  { slug: 'paramanager', name: 'ParaManager', color: '#0ea5e9', tag: 'Parameters',
+    text: 'Create and edit project parameters, batch-edit family parameters, transfer parameters between families and edit shared parameter files.',
+    points: [
+      'Edit project parameters in a grid (group, instance / type, categories), with Excel export and import',
+      'Add, delete and rename parameters across many families in one run',
+      'Copy parameters from a source family to target families',
+      'Full editor for shared parameter files: groups, parameters and renaming'
+    ] }
+];
+
+const ADDINS = [
+  { group: 'Structural detailing', note: 'Shop drawing automation', items: [
+    { slug: 'columns-dimensions', name: 'Columns Dimensions', g: 'CD',
+      text: 'Dimensions selected columns to the nearest parallel grids in a plan view. Offsets and tiers are placed automatically on the side with free space, avoiding other dimensions, columns, walls and tags.',
+      tech: ['Dimensions', 'Solid face references', 'Collision checks'] },
+    { slug: 'annotate-stairs', name: 'Annotate Stairs', g: 'AS',
+      text: 'Annotates a stair section in one run: tread and riser dimension chains, waist and landing thickness, riser numbering, spot elevations on landings and wall and stair tags.',
+      tech: ['Stairs API', 'Section views', 'Tags and spots'] },
+    { slug: 'pt-tendons', name: 'PT Tendons', g: 'PT',
+      text: 'Builds post-tension tendons as 3D solids from the contractor\'s DWG polylines, following the slab and beam concrete, so tendons can be clash-checked in Revit and Navisworks. A companion Apply Offsets command updates tendon heights.',
+      tech: ['DirectShape', 'Swept geometry', 'CAD import', 'Extensible Storage'] },
+    { slug: 'spot-coordinates', name: 'Spot Coordinates', g: 'SC',
+      text: 'Places spot coordinates on every corner of selected columns, slabs and foundations in structural plans, arranging leaders so the text does not overlap other annotations.',
+      tech: ['Spot coordinates', 'Geometry analysis', 'Overlap avoidance'] }
+  ] },
+  { group: 'Steel coordination', note: 'Working with linked steel models', items: [
+    { slug: 'linked-bolts-plates', name: 'Markers on Linked Bolts and Plates', g: 'BP',
+      text: 'Places marker families in the host model on bolts and plates picked inside a linked steel model, so anchors and embeds can be documented without remodeling.',
+      tech: ['Linked elements', 'Family placement', 'Transforms'] },
+    { slug: 'fill-markers', name: 'Fill Markers from Linked Bolts', g: 'FM',
+      text: 'Matches existing markers to the bolts in the linked model by position and fills their parameters from the bolt data.',
+      tech: ['Linked data', 'Parameter writing'] },
+    { slug: 'bolt-spot-coordinates', name: 'Spot Coordinates on Bolts', g: 'BS',
+      text: 'Adds a spot coordinate to every bolt marker in the active view for setting-out drawings.',
+      tech: ['Spot coordinates', 'References'] }
+  ] },
+  { group: 'Model management', note: 'QA, data and deliverables', items: [
+    { slug: 'qaqc', name: 'QAQC · Model Health Dashboard', g: 'QA',
+      text: 'One dashboard that scores model health: warnings, purgeable items, imported CAD, in-place families, unplaced and unenclosed rooms, views without templates, worksets, pinned grids, levels and links, and naming convention checks.',
+      tech: ['WPF dashboard', 'Collectors', 'Pass / review / fail rules'] },
+    { slug: 'sheet-exporter', name: 'Sheet Exporter', g: 'SE',
+      text: 'Batch exports sheets to PDF and DWG with search, custom file names built from sheet number, name and revision, and separate PDF and CAD settings.',
+      tech: ['PDF export', 'DWG export', 'WPF'] },
+    { slug: 'parameter-mapper', name: 'Parameter Mapper', g: 'PM',
+      text: 'Copies values from one parameter to another across many elements using a chosen mapping, then reports the result and lists any elements that failed.',
+      tech: ['Parameters', 'Mapping', 'Reporting'] },
+    { slug: 'views-data', name: 'Views Data', g: 'VD',
+      text: 'Lists every view with its view template and the sheet it is placed on, to find unplaced views and views without templates quickly.',
+      tech: ['Views', 'Sheets', 'WPF grid'] }
+  ] },
+  { group: 'Utilities', note: 'Small tools, used every day', items: [
+    { slug: 'link-workset-creator', name: 'Link Workset Creator', g: 'LW',
+      text: 'Creates a workset for each Revit link in a workshared model and assigns both the link types and instances to it.',
+      tech: ['Worksets', 'Revit links'] },
+    { slug: 'copy-from-link', name: 'Copy From Link', g: 'CL',
+      text: 'Copies elements selected inside a linked model straight into the host model, in place.',
+      tech: ['Linked selection', 'Element copy'] }
+  ] }
+];
+
+const PROJECTS = [
+  { co: 'SIAC Construction', role: 'BIM Engineer and Shop Drawing Engineer · 2025 – Present', items: [
+    { slug: 'mbs-stadium', name: 'MBS Stadium', loc: 'Qiddiya, KSA', text: 'LOD 400 structural modeling and shop drawings.' },
+    { slug: 'amaala', name: 'AMAALA Staff Village, School Zones 3 and 5', loc: 'KSA', text: 'As-built and LOD 500 model handover: review, coordination and family corrections.' },
+    { slug: 'zed-east', name: 'ZED East, Multi-Family Cluster C5', loc: 'Egypt', text: 'Structural BIM modeling and shop drawings.' },
+    { slug: 'up-views', name: 'Up-Views', loc: '6 October, Egypt', text: 'Structural BIM modeling and shop drawings.' }
+  ] },
+  { co: 'Consolidated Contractors Company (CCC)', role: 'Structural BIM Engineer · 2023 – 2025', items: [
+    { slug: 'exit-15', name: 'EXIT-15', loc: 'KSA', text: 'Ski Slope Building, Car Park Building, Park Bridge and Ramp Bridge: Revit shop drawings, including the bridge landscape packages.' },
+    { slug: 'al-ula-hq', name: 'Al-Ula Headquarters Office and Business Park', loc: 'KSA', text: 'Structural model and construction documentation.' },
+    { slug: 'lagoon-park', name: 'Lagoon Park Podium Building, iCity', loc: 'Egypt', text: 'Structural model and shop drawings.' },
+    { slug: 'four-seasons', name: 'Four Seasons Cairo, Madinaty', loc: 'Egypt', text: 'Structural model and shop drawings.' }
+  ] },
+  { co: 'Standards, Builders\' Solutions', role: 'Shop Drawing and Structural Design Engineer · 2022 – 2023', items: [
+    { slug: 'sindalah', name: 'Sindalah Island, NEOM', loc: 'KSA', text: 'Structural shop drawings in AutoCAD Structural Detailing.' },
+    { slug: 'al-fustat', name: 'Al-Fustat Garden', loc: 'Egypt', text: 'Structural shop drawings.' },
+    { slug: 'samhan', name: 'Samhan Car Park', loc: 'KSA', text: 'Structural shop drawings.' }
+  ] }
+];
+
+/* ---------- image discovery: slug-1, slug-2 ... until one is missing ---------- */
+function probe(src) {
+  return new Promise(res => { const i = new Image(); i.onload = () => res(src); i.onerror = () => res(null); i.src = src; });
+}
+async function findImages(dir, slug, max = 8) {
+  const found = [];
+  for (let n = 1; n <= max; n++) {
+    let hit = null;
+    for (const ext of ['png', 'jpg', 'jpeg', 'webp']) { hit = await probe(`${dir}/${slug}-${n}.${ext}`); if (hit) break; }
+    if (!hit) break;
+    found.push(hit);
+  }
+  return found;
+}
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+
+/* ---------- lightbox ---------- */
+const lb = document.getElementById('lb'), lbImg = lb.querySelector('img'), lbCap = lb.querySelector('.cap');
+let lbSet = [], lbAt = 0, lbTitle = '';
+function lbShow() { lbImg.src = lbSet[lbAt]; lbCap.textContent = lbTitle + (lbSet.length > 1 ? `  ·  ${lbAt + 1} / ${lbSet.length}` : ''); }
+function openLb(set, at, title) {
+  lbSet = set; lbAt = at; lbTitle = title; lbShow(); lb.classList.add('open');
+  lb.querySelector('.prev').hidden = lb.querySelector('.next').hidden = set.length < 2;
+}
+function step(d) { lbAt = (lbAt + d + lbSet.length) % lbSet.length; lbShow(); }
+lb.querySelector('.x').onclick = () => lb.classList.remove('open');
+lb.querySelector('.prev').onclick = () => step(-1);
+lb.querySelector('.next').onclick = () => step(1);
+lb.onclick = e => { if (e.target === lb) lb.classList.remove('open'); };
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') lb.classList.remove('open');
+  if (e.key === 'ArrowLeft') step(-1);
+  if (e.key === 'ArrowRight') step(1);
+});
+
+/* ---------- DataHub tools ---------- */
+const dhRoot = document.getElementById('dh-tools');
+DATAHUB.forEach(t => {
+  const row = el('div', 'tool');
+  row.append(el('div', 'tool-text',
+    `<div class="tag mono" style="color:${t.color}">${t.tag}</div><h3>${t.name}</h3><p>${t.text}</p><ul>${t.points.map(p => `<li>${p}</li>`).join('')}</ul>`));
+  const gal = el('div', 'gallery');
+  row.append(gal); dhRoot.append(row);
+  findImages('images/addins', t.slug).then(imgs => {
+    if (!imgs.length) { gal.remove(); row.style.gridTemplateColumns = '1fr'; return; }
+    let at = 0;
+    const shot = el('button', 'shot'); shot.setAttribute('aria-label', `Enlarge ${t.name} screenshot`);
+    const big = el('img'); big.src = imgs[0]; big.alt = `${t.name} screenshot`; shot.append(big);
+    shot.onclick = () => openLb(imgs, at, t.name);
+    gal.append(shot);
+    if (imgs.length > 1) {
+      const th = el('div', 'thumbs');
+      imgs.forEach((src, i) => {
+        const b = el('button', i ? '' : 'on'); b.setAttribute('aria-label', `Show ${t.name} screenshot ${i + 1}`);
+        const im = el('img'); im.src = src; im.alt = ''; b.append(im);
+        b.onclick = () => { at = i; big.src = src; th.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };
+        th.append(b);
+      });
+      gal.append(th);
+    }
+  });
+});
+
+/* ---------- cards (add-ins and projects) ---------- */
+function attachMedia(card, dir, slug, title) {
+  findImages(dir, slug).then(imgs => {
+    if (!imgs.length) return;
+    const m = el('button', 'media'); m.setAttribute('aria-label', `Enlarge ${title} image`);
+    const im = el('img'); im.src = imgs[0]; im.alt = title; im.loading = 'lazy'; m.append(im);
+    if (imgs.length > 1) m.append(el('span', 'count', `${imgs.length} images`));
+    m.onclick = () => openLb(imgs, 0, title);
+    card.prepend(m);
+  });
+}
+const agRoot = document.getElementById('addin-groups');
+ADDINS.forEach(g => {
+  agRoot.append(el('div', 'group-title', `<h3>${g.group}</h3><span>${g.note}</span>`));
+  const grid = el('div', 'cards');
+  g.items.forEach(a => {
+    const c = el('article', 'card');
+    c.append(el('div', 'body',
+      `<div class="top"><div class="glyph mono">${a.g}</div><h4>${a.name}</h4></div><p>${a.text}</p><div class="chips">${a.tech.map(x => `<span class="chip">${x}</span>`).join('')}</div>`));
+    attachMedia(c, 'images/addins', a.slug, a.name);
+    grid.append(c);
+  });
+  agRoot.append(grid);
+});
+const prRoot = document.getElementById('project-blocks');
+PROJECTS.forEach(b => {
+  const blk = el('div', 'proj-block');
+  blk.append(el('header', '', `<h3>${b.co}</h3><span>${b.role}</span>`));
+  const grid = el('div', 'cards');
+  b.items.forEach(p => {
+    const c = el('article', 'card proj');
+    c.append(el('div', 'body', `<div class="loc mono">${p.loc}</div><h4>${p.name}</h4><p>${p.text}</p>`));
+    attachMedia(c, 'images/projects', p.slug, p.name);
+    grid.append(c);
+  });
+  blk.append(grid); prRoot.append(blk);
+});
+
+/* ---------- profile photo, theme, year ---------- */
+(async () => {
+  for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
+    const hit = await probe(`images/profile/photo.${ext}`);
+    if (hit) { const p = document.getElementById('photo'); p.src = hit; p.hidden = false; break; }
+  }
+})();
+const root = document.documentElement;
+try { const saved = localStorage.getItem('theme'); if (saved) root.dataset.theme = saved; } catch (e) {}
+document.getElementById('theme').onclick = () => {
+  const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+  root.dataset.theme = next;
+  try { localStorage.setItem('theme', next); } catch (e) {}
+};
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
