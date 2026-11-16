@@ -93,7 +93,8 @@ h1 { font-size: clamp(38px, 6.4vw, 68px); line-height: 1.05; margin: 14px 0 12px
 @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .photo { width: 150px; height: 150px; order: -1; } }
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 52px; }
 .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
-.stat b { display: block; font-size: 30px; line-height: 1.1; color: var(--accent); }
+.stat b { display: block; font-size: 24px; line-height: 1.2; color: var(--accent); white-space: nowrap; }
+@media (max-width: 420px) { .stat b { font-size: 19px; } }
 .stat span { color: var(--muted); font-size: 13.5px; }
 @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 
@@ -104,6 +105,22 @@ section.alt { background: var(--bg-2); }
 h2 { font-size: clamp(27px, 3.6vw, 38px); margin: 8px 0 10px; letter-spacing: -.01em; line-height: 1.15; }
 .sub { color: var(--muted); max-width: 70ch; margin: 0 0 36px; }
 h3 { margin: 0 0 6px; font-size: 19px; }
+
+/* coordination */
+.coord { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px; align-items: start; }
+@media (max-width: 960px) { .coord { grid-template-columns: 1fr; } }
+.duties { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 620px) { .duties { grid-template-columns: 1fr; } }
+.duty { display: flex; gap: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.duty .n { color: var(--accent); font-size: 13px; padding-top: 3px; }
+.duty h3 { font-size: 16.5px; margin: 0 0 4px; }
+.duty p { margin: 0; color: var(--muted); font-size: 14.5px; }
+.cap-line { color: var(--muted); font-size: 12px; margin-top: 8px; }
+.flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: 34px; }
+@media (max-width: 860px) { .flow { grid-template-columns: 1fr; } }
+.step { border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 12px; padding: 14px 16px; background: var(--card); color: var(--muted); font-size: 14px; }
+.step span { color: var(--accent-2); font-size: 12px; }
+.step b { display: block; color: var(--text); font-size: 16px; margin: 2px 0 3px; }
 
 /* skills */
 .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
@@ -202,6 +219,7 @@ footer { padding: 26px 0; color: var(--muted); font-size: 13px; text-align: cent
   <div class="wrap">
     <a class="brand" href="#top"><span>MN</span>Mohamed Nasr</a>
     <div class="links">
+      <a href="#coordination">Coordination</a>
       <a href="#skills">Skills</a>
       <a href="#datahub">DataHub</a>
       <a href="#addins">Add-ins</a>
@@ -220,13 +238,15 @@ footer { padding: 26px 0; color: var(--muted); font-size: 13px; text-align: cent
       <h1>Mohamed Nasr</h1>
       <p class="role"><b>BIM Coordinator</b> · <b>Revit API Developer</b></p>
       <p class="lede">
-        Structural engineer with 4+ years in BIM: multidisciplinary coordination, clash detection,
-        CDE administration and LOD 400 / LOD 500 delivery on projects across Egypt and Saudi Arabia.
-        I also build the tools my teams use: 20+ Revit add-ins in C# and WPF that remove repetitive
-        modeling, documentation and QA work.
+        BIM Coordinator with 4+ years in construction BIM. I coordinate architecture, structure and MEP
+        models, lead clash detection, administer the project CDEs (ACC and Aconex) and keep models
+        compliant with the BEP, on projects across Egypt and Saudi Arabia. I also write the Revit
+        add-ins my teams use, 20+ so far, to take repetitive modeling, documentation and QA work off
+        their hands.
       </p>
       <div class="cta">
-        <a class="btn primary" href="#datahub">See the add-ins</a>
+        <a class="btn primary" href="#coordination">How I coordinate</a>
+        <a class="btn" href="#datahub">Add-ins</a>
         <a class="btn" href="Mohamed-Nasr-CV.pdf" download>Download CV</a>
         <a class="btn" href="https://www.linkedin.com/in/mohamednasr14/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" href="mailto:Mohmednasr142@gmail.com">Email me</a>
@@ -236,26 +256,67 @@ footer { padding: 26px 0; color: var(--muted); font-size: 13px; text-align: cent
   </div>
   <div class="wrap">
     <div class="stats">
-      <div class="stat"><b>4+</b><span>years in BIM and structural detailing</span></div>
-      <div class="stat"><b>20+</b><span>Revit add-ins built in C# / WPF</span></div>
-      <div class="stat"><b>11</b><span>major projects in Egypt and KSA</span></div>
-      <div class="stat"><b>LOD 500</b><span>as-built model handover</span></div>
+      <div class="stat"><b>4+</b><span>years in BIM, on 11 projects in Egypt and KSA</span></div>
+      <div class="stat"><b>ARC · STR · MEP</b><span>disciplines coordinated and clash-checked</span></div>
+      <div class="stat"><b>ACC + Aconex</b><span>common data environments administered</span></div>
+      <div class="stat"><b>20+</b><span>Revit add-ins built to support the team</span></div>
     </div>
   </div>
 </header>
 
+<section id="coordination" class="alt">
+  <div class="wrap">
+    <div class="kicker mono">01 · BIM coordination</div>
+    <h2>What I do as a BIM Coordinator</h2>
+    <p class="sub">My day job at SIAC Construction: keeping the architecture, structure and MEP models working as one, and making sure what gets issued is clash-free, compliant and on the right platform.</p>
+
+    <div class="coord">
+      <div class="coord-main">
+        <div class="duties">
+          <div class="duty"><div class="n mono">01</div><div><h3>Multidisciplinary coordination</h3><p>Coordinate architecture, structure and MEP models and lead clash detection in Navisworks and Revit, so spatial conflicts are resolved before construction.</p></div></div>
+          <div class="duty"><div class="n mono">02</div><div><h3>CDE administration</h3><p>Administer Aconex and every ACC module (Docs, Design Collaboration, Model Coordination): file sharing, model linking and version control across all stakeholders.</p></div></div>
+          <div class="duty"><div class="n mono">03</div><div><h3>Standards and compliance</h3><p>Check every model and shop drawing against the project BIM Execution Plan, RASCI matrix and naming conventions before it is issued.</p></div></div>
+          <div class="duty"><div class="n mono">04</div><div><h3>As-built and LOD 500 handover</h3><p>On AMAALA I reviewed and coordinated the as-built and LOD 500 model handover: finding model issues and correcting families until the models were accepted.</p></div></div>
+          <div class="duty"><div class="n mono">05</div><div><h3>Hub setup and templates</h3><p>Autodesk Forma hub admin: project templates, members, licenses, roles and responsibilities. I also set up BIM workflows, Revit templates and family libraries.</p></div></div>
+          <div class="duty"><div class="n mono">06</div><div><h3>Team support and meetings</h3><p>Technical BIM support for design teams, site engineers and project managers, and presenting issues, workflow updates and clash resolutions in coordination meetings.</p></div></div>
+        </div>
+      </div>
+      <aside class="coord-side">
+        <button class="shot" id="coord-shot" aria-label="Enlarge coordination model image"><img src="images/projects/mbs-stadium-3.jpg" alt="Coordination model in Navisworks"></button>
+        <div class="cap-line mono">Coordination model in Navisworks · MBS Stadium</div>
+        <div class="panel" style="margin-top:16px">
+          <h3>Tools I built for coordination</h3>
+          <ul>
+            <li><b>QAQC Dashboard</b>: scores model health before every issue</li>
+            <li><b>Link Workset Creator</b>: one workset per linked model</li>
+            <li><b>SheetLink</b>: bulk parameter fixes through Excel</li>
+            <li><b>PT Tendons</b>: brings CAD-only tendons into the clash model</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <div class="flow">
+      <div class="step"><span class="mono">1</span><b>Link</b>Models shared and linked through ACC / Aconex</div>
+      <div class="step"><span class="mono">2</span><b>Check</b>Model QA against BEP and naming rules</div>
+      <div class="step"><span class="mono">3</span><b>Clash</b>Clash detection in Navisworks and Revit</div>
+      <div class="step"><span class="mono">4</span><b>Resolve</b>Issues presented and closed in coordination meetings</div>
+      <div class="step"><span class="mono">5</span><b>Issue</b>Shop drawings and as-built models handed over</div>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <div class="wrap">
-    <div class="kicker mono">01 · Skills</div>
-    <h2>Engineering and code, on the same desk</h2>
-    <p class="sub">I work on live projects every day, so the tools I write come from real problems in coordination, shop drawings and model quality.</p>
+    <div class="kicker mono">02 · Skills</div>
+    <h2>Coordination, engineering and code on the same desk</h2>
+    <p class="sub">I coordinate live projects every day, so the tools I write come from real problems in coordination, shop drawings and model quality.</p>
     <div class="skills">
       <div class="panel">
-        <h3>Development</h3>
+        <h3>BIM management</h3>
         <div class="chips">
-          <span class="chip hot">Revit API</span><span class="chip hot">C#</span><span class="chip hot">WPF / XAML</span>
-          <span class="chip">.NET</span><span class="chip">MVVM</span><span class="chip">Excel import / export</span>
-          <span class="chip">Extensible Storage</span><span class="chip">Licensing and installers</span><span class="chip">Dynamo</span>
+          <span class="chip hot">Model coordination</span><span class="chip hot">Clash detection</span><span class="chip hot">BIM Execution Plan</span>
+          <span class="chip">RASCI</span><span class="chip">Naming conventions</span><span class="chip">Version control</span>
         </div>
       </div>
       <div class="panel">
@@ -273,10 +334,11 @@ footer { padding: 26px 0; color: var(--muted); font-size: 13px; text-align: cent
         </div>
       </div>
       <div class="panel">
-        <h3>BIM management</h3>
+        <h3>Development</h3>
         <div class="chips">
-          <span class="chip">BIM Execution Plan</span><span class="chip">RASCI</span><span class="chip">Naming conventions</span>
-          <span class="chip hot">Clash detection</span><span class="chip">Model coordination</span><span class="chip">Version control</span>
+          <span class="chip hot">Revit API</span><span class="chip hot">C#</span><span class="chip hot">WPF / XAML</span>
+          <span class="chip">.NET</span><span class="chip">MVVM</span><span class="chip">Excel import / export</span>
+          <span class="chip">Extensible Storage</span><span class="chip">Licensing and installers</span><span class="chip">Dynamo</span>
         </div>
       </div>
       <div class="panel">
@@ -291,9 +353,9 @@ footer { padding: 26px 0; color: var(--muted); font-size: 13px; text-align: cent
   </div>
 </section>
 
-<section id="datahub" class="alt">
+<section id="datahub">
   <div class="wrap">
-    <div class="kicker mono">02 · Featured product</div>
+    <div class="kicker mono">03 · Featured product</div>
     <div class="dh-head">
       <img src="images/addins/datahub-logo.png" alt="DataHub logo">
       <div>
@@ -311,27 +373,27 @@ footer { padding: 26px 0; color: var(--muted); font-size: 13px; text-align: cent
   </div>
 </section>
 
-<section id="addins">
+<section id="addins" class="alt">
   <div class="wrap">
-    <div class="kicker mono">03 · Revit add-ins</div>
+    <div class="kicker mono">04 · Revit add-ins</div>
     <h2>Tools built for the project floor</h2>
     <p class="sub">A selection of the add-ins I wrote for structural detailing, steel coordination and model management. All of them are C# on the Revit 2025 API.</p>
     <div id="addin-groups"></div>
   </div>
 </section>
 
-<section id="projects" class="alt">
+<section id="projects">
   <div class="wrap">
-    <div class="kicker mono">04 · Projects</div>
+    <div class="kicker mono">05 · Projects</div>
     <h2>Project experience</h2>
     <p class="sub">Structural BIM modeling, shop drawings and coordination on residential, commercial, entertainment and bridge projects.</p>
     <div id="project-blocks"></div>
   </div>
 </section>
 
-<section id="experience">
+<section id="experience" class="alt">
   <div class="wrap">
-    <div class="kicker mono">05 · Experience</div>
+    <div class="kicker mono">06 · Experience</div>
     <h2 style="margin-bottom:32px">Where I have worked</h2>
     <div class="timeline">
       <div class="job">
@@ -400,9 +462,9 @@ footer { padding: 26px 0; color: var(--muted); font-size: 13px; text-align: cent
   </div>
 </section>
 
-<section id="contact" class="alt contact">
+<section id="contact" class="contact">
   <div class="wrap">
-    <div class="kicker mono">06 · Contact</div>
+    <div class="kicker mono">07 · Contact</div>
     <h2>Let's talk</h2>
     <p class="sub">Open to BIM coordination roles and Revit automation work. Arabic (native) and English (very good).</p>
     <div class="cta">
@@ -645,6 +707,7 @@ document.getElementById('theme').onclick = () => {
   root.dataset.theme = next;
   try { localStorage.setItem('theme', next); } catch (e) {}
 };
+document.getElementById('coord-shot').onclick = () => openLb(['images/projects/mbs-stadium-3.jpg'], 0, 'Coordination model in Navisworks · MBS Stadium');
 document.getElementById('yr').textContent = new Date().getFullYear();
 </script>
 </body>
